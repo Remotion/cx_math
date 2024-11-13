@@ -500,6 +500,22 @@ constexpr bool is_prime_slow(T num) {
 	return (result);
 }
 
+constexpr bool is_prime_slow2(int64_t n) {
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    if (n % 2 == 0 || n % 3 == 0 || n % 5 == 0) return false;
+    if (n % 7 == 0 || n % 11 == 0 || n % 13 == 0) return false;
+    for (int64_t i = 30; i * i <= n; i += 30) {
+        if (n % (i - 13) == 0 || n % (i - 11) == 0 ||
+            n % (i - 7)  == 0 || n % (i - 1)  == 0 ||
+            n % (i + 1)  == 0 || n % (i + 7)  == 0 ||
+            n % (i + 11) == 0 || n % (i + 13) == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 /// is_prime(n)  Returns `true` if `n` is prime, and `false` otherwise.
 // https://cp-algorithms.com/algebra/primality_tests.html
