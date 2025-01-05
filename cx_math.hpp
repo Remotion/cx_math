@@ -503,15 +503,18 @@ constexpr bool is_prime_slow(T num) {
 constexpr bool is_prime_slow2(int64_t n) {
     if (n <= 1) return false;
     if (n <= 3) return true;
+	if (n == 5 || n == 7 || n == 11 || n == 13) return true;
+	if (n == 17 || n == 19 || n == 23 || n == 29) return true;
     if (n % 2 == 0 || n % 3 == 0 || n % 5 == 0) return false;
     if (n % 7 == 0 || n % 11 == 0 || n % 13 == 0) return false;
+	if (n % 17 == 0 || n % 19 == 0 || n % 23 == 0 || n % 29 == 0) return false;
     for (int64_t i = 30; i * i <= n; i += 30) {
-        if (n % (i - 13) == 0 || n % (i - 11) == 0 ||
-            n % (i - 7)  == 0 || n % (i - 1)  == 0 ||
-            n % (i + 1)  == 0 || n % (i + 7)  == 0 ||
-            n % (i + 11) == 0 || n % (i + 13) == 0) {
+        if (n % (i + 1)  == 0 || n % (i + 7)  == 0 ||
+            n % (i + 11) == 0 || n % (i + 13) == 0 ||
+            n % (i + 17) == 0 || n % (i + 19) == 0 ||
+            n % (i + 23) == 0 || n % (i + 29) == 0) {
             return false;
-        }
+        }	
     }
     return true;
 }
